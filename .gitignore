@@ -1,0 +1,36 @@
+# Maven build output
+**/target/
+**/build/
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE metadata
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+.apt_generated/
+.springBeans
+.sts4-cache
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# Local environment and secrets
+.env
+.env.*
+*.local
+
+# Operating system files
+.DS_Store
+Thumbs.db
