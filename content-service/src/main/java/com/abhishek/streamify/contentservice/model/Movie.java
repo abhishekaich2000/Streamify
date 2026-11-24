@@ -56,7 +56,7 @@ public class Movie {
     private String hlsUrl;
 
     @Enumerated (EnumType.STRING)
-    private VideoStatus videoStatus;
+    private VideoStatus videoStatus=VideoStatus.PENDING;
 
     @CreationTimestamp 
     private LocalDateTime createdAt;
