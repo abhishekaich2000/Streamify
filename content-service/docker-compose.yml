@@ -1,13 +1,14 @@
 services:
   mysql:
-    image: mysql:latest
+    image: mysql:8.4
     container_name: content-service-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DB_PASSWORD:-root}
       MYSQL_DATABASE: content_service
-      MYSQL_USER: ${MYSQL_DB_USERNAME}
-      MYSQL_PASSWORD: ${MYSQL_DB_PASSWORD}
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
-      - D:\JAVA Spring boot Project\Streamify\content-service\jobportal-data:/var/lib/mysql
+      - content-service-mysql-data:/var/lib/mysql
+
+volumes:
+  content-service-mysql-data:
