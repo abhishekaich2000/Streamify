@@ -1,0 +1,50 @@
+spring:
+
+  config:
+    import: optional:file:./.env[.properties],optional:file:./encoding-service/.env[.properties]
+
+  application:
+    name: encoding-service
+  
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: encoding-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+        spring:
+            json:
+            trusted-packages: "*"
+            use:
+                type:
+                    headers: false
+                value:
+                    default:
+                        type: com.abhishek.streamify.encodingservice.event.VideoUploadedEvent
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+aws:
+  access-key: ${AWS_ACCESS_KEY}
+  secret-key: ${AWS_SECRET_KEY}
+  region: ${AWS_REGION}
+  s3:
+    bucket-name: ${AWS_S3_BUCKET_NAME}
+
+ffmpeg:
+    path: ${FFMPEG_PATH}
+
+encoding:
+    base-path: ${TEMP_DIR:/temp/encoding}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+server:
+  port: 8083
